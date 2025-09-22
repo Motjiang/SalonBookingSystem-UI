@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterLink],
   template: `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
@@ -43,7 +45,7 @@ import { Component } from '@angular/core';
 
           <!-- Login Button (right aligned) -->
           <div class="d-flex">
-            <a class="btn btn-outline-info" href="/login">Login <i class="bi bi-box-arrow-in-right"></i></a>
+            <a class="btn btn-outline-info" routerLink="/account/signIn">Login <i class="bi bi-box-arrow-in-right"></i></a>
           </div>
         </div>
       </div>

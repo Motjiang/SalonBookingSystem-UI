@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
-
+ currentYear = new Date().getFullYear();
+  companyName = 'SalonZero. All Rights Reserved';
 }
