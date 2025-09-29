@@ -1,23 +1,22 @@
 <div class="d-flex align-items-center justify-content-center bg-light" style="min-height: 100vh;">
     <main class="form-signin w-100 ms-4 me-4" style="max-width: 400px;">
-        <form autocomplete="off">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
             <img class="mb-4" src="favicon.ico" alt="" width="40" height="40" />
             <h1 class="h3 mb-3 fw-normal">SalonZero 💇‍♂️</h1>
 
             <div class="form-floating mb-3">
-                <input formControlName="userName" type="text" class="form-control" id="floatingInput"
-                    placeholder="Username (your email address)">
-                <label for="floatingInput">Email address</label>
-                <span class="text-danger">
+                <input formControlName="userName" type="email"  [class.is-invalid]="submitted && loginForm.get('userName')?.errors" class="form-control" id="floatingInput">
+                <label for="floatingInput">Username</label>
+                <span class="text-danger" *ngIf="submitted && loginForm.get('userName')?.hasError('required')">
                     Username is required
                 </span>
             </div>
 
             <div class="form-floating mb-3">
-                <input formControlName="password" type="password" class="form-control" id="floatingPassword"
-                    placeholder="Password" />
+                <input formControlName="password" type="password" class="form-control" [class.is-invalid]="submitted && loginForm.get('password')?.errors" id="floatingPassword"
+                     />
                 <label for="floatingPassword">Password</label>
-                <span class="text-danger">
+                <span class="text-danger"  *ngIf="submitted && loginForm.get('password')?.hasError('required')">
                     Password is required
                 </span>
             </div>
@@ -25,13 +24,25 @@
             <div class="text-start mb-3">
                 <a><em>Forgot Password?</em></a>
             </div>
+             <div class="form-floatin" *ngIf="errorMessages.length > 0">
+                    <app-validation-messages [errorMessages]="errorMessages"/>
+                    <a class="btn btn-link"
+                        *ngIf="errorMessages[0].includes('Please confirm your email')">
+                        Click here to resend email confirmation link in case you didn't receive it.
+                    </a>
+                </div>
+
 
             <button class="btn btn-primary w-100 py-2" type="submit">
                 Sign in
             </button>
+              <div class="text-center mt-3 mb-3">
+                <a routerLink="/account/signUp"><em>Not one of us yet? Sign up <i class="bi bi-arrow-up-right-circle"></i></em></a>
+            </div>
             <p class="mt-5 mb-3 text-muted text-center">
                 &copy; {{ currentYear }} {{ companyName }}
             </p>
+
         </form>
     </main>
 </div>
