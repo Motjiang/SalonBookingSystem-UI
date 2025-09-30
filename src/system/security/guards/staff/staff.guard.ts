@@ -23,7 +23,7 @@ const accountService = inject(AccountService);
         }
 
         // Allowed roles
-        const allowedRoles = ['Administrator', 'Staff'];
+        const allowedRoles = ['Admin', 'Staff'];
 
         if (
           Array.isArray(userRoles) &&

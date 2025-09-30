@@ -9,10 +9,24 @@ import { SideBarComponent } from "../side-bar/side-bar.component";
   standalone: true,
   imports: [RouterOutlet, NavbarLayoutComponent, FooterLayoutComponent, SideBarComponent],
   template: `
-  <app-side-bar/>
-    <app-navbar-layout/>
-    <router-outlet/>
-    <app-footer-layout/>
+   <div class="d-flex vh-100">
+      <!-- Sidebar -->
+      <app-side-bar class="bg-dark text-white flex-shrink-0" style="width: 280px;"></app-side-bar>
+
+      <!-- Main content -->
+      <div class="flex-grow-1 d-flex flex-column">
+        <!-- Navbar -->
+        <app-navbar-layout></app-navbar-layout>
+
+        <!-- Router content -->
+        <main class="flex-grow-1 overflow-auto p-3 ">
+          <router-outlet></router-outlet>
+        </main>
+
+        <!-- Footer -->
+        <app-footer-layout></app-footer-layout>
+      </div>
+    </div>
   `,
   styleUrl: './dashboard-layout.component.css'
 })
