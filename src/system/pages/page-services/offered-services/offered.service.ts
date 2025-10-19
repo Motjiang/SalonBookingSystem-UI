@@ -16,6 +16,7 @@ export class OfferedService {
       search: search,
     };
 
+    // get paged services
     return this.http.get<PagedServiceResponse>(
       `${environment.appUrl}/api/services/get-all-services`,
       { params }
